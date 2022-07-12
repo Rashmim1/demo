@@ -1,0 +1,160 @@
+<app-nav-bar (searchtextchanged)="onserachtextentered($event)"></app-nav-bar>
+<div class="main">
+  <p class="NFT">NFT Token</p>
+  <div class="card-container">
+    <div>
+      <img
+        class="image"
+        src= {{nftMaindDetails?.image}}
+        alt="flower"
+      />
+    </div>
+    <div
+      class="info"
+      *ngIf="
+        searchtext === '' ||
+        nftMaindDetails.tokenId
+          .toLowerCase()
+          .includes(searchtext.toLowerCase()) ||
+        nftMaindDetails.mintId.toLowerCase().includes(searchtext.toLowerCase())
+      ">
+      <ul class="left-card">
+        <li class="NFT-name">NFT Name</li>
+        <li class="creator">creator</li>
+        <li class="Token-Id">Token Id</li>
+        <li class="Mint-id">Mint ID</li>
+        <li class="total">Total</li>
+      </ul>
+      <ul class="left-card span">
+        <li><span>:</span></li>
+        <li><span>:</span></li>
+        <li><span>:</span></li>
+        <li><span>:</span></li>
+        <li><span>:</span></li>
+      </ul>
+      <ul class="left-card card1">
+        <li class="it-name">{{ nftMaindDetails?.nftName }}</li>
+        <li class="it-creator">
+          <select>
+            <option value="creator">--------------------select creator--------------------</option>
+            <option
+              value="creator"
+              *ngFor="let detail of nftMaindDetails?.creators"
+            >
+              {{ detail?.address }}
+            </option>
+          </select>
+        </li>
+        <li>
+          <span class="it-token" ngxCopyPaste #cp="copy">
+            {{ nftMaindDetails?.tokenId }}</span
+          >
+          <span class="material-icons copy" (click)="cp.copy()"
+            >content_copy</span
+          >
+        </li>
+        <li>
+          <span class="it-mint" ngxCopyPaste #cp1="copy">
+            {{ nftMaindDetails?.mintId }}</span
+          ><span class="material-icons copy" (click)="cp1.copy()"
+            >content_copy</span
+          >
+        </li>
+        <li class="it-total">{{ nftMaindDetails?.totalSupply }}</li>
+      </ul>
+    </div>
+    <div class="button-position">
+      <button class="button view" >View on Solscan</button>
+    </div>
+  </div>
+
+  <div class="head">
+    <mat-tab-group class="remove-border-bottom">
+      <mat-tab label="Attributes" class="label"
+        ><div class="main-header">
+          <table
+            mat-table
+            [dataSource]="attributes"
+            class="table-1"
+            id="attribute"
+          >
+            <ng-container matColumnDef="traittype">
+              <th mat-header-cell *matHeaderCellDef class="thead">
+                Trait Type
+              </th>
+              <td mat-cell *matCellDef="let element" class="content">
+                {{ element.trait_type }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="value">
+              <th mat-header-cell *matHeaderCellDef class="thead">Value</th>
+              <td mat-cell *matCellDef="let element" class="content">
+                {{ element.value }}
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </div>
+      </mat-tab>
+      <mat-tab label="Metadata" class="label">
+        <div class="metamain">
+          <div class="json">
+            <i class="fa-solid fa-caret-down"></i><br>
+            <span class="rootjson">
+              "root": {{ "{" }} <small>9 items </small></span>
+            <ul>
+              <li>"Key":<small>int</small> {{ metadata?.key | json }}</li>
+              <li>
+                "updateAuthority":<small>string</small
+                ><span class="red">{{ metadata?.updateAuthority | json }}</span>
+              </li>
+              <ul>
+                <li>
+                  "mint":<small>string </small
+                  ><span class="red"> {{ metadata?.mint | json }}</span>
+                </li>
+                "data":{{"{"}}
+              </ul>
+              <i class="fa-solid fa-caret-down"></i
+              ><br/>
+              <li>
+                "name":<small>string </small
+                ><span class="red">{{ metadata?.data?.name | json }}</span>
+              </li>
+              <ul>
+                <li>
+                  "symbol":<small>string</small
+                  ><span class="red">{{ metadata?.data?.symbol | json }}</span>
+                </li>
+                <li>
+                  "uri":<small>string</small
+                  ><span class="blue"> {{ metadata?.data?.uri | json }}</span>
+                </li>
+                <li>
+                  "sellerFeeBasisPoints":<small>int </small
+                  >{{ metadata?.data?.seller_fee_basis_points}}
+                </li>
+                <br />
+                <i class="fa-solid fa-caret-down"></i
+                ><br />
+                <span>"creator":[<small>{{nftMaindDetails?.creators.length}} items</small></span>
+                <ul *ngFor="let item of nftMaindDetails?.creators;let i=index;">
+                  <li> {{i}}:{{"{"}} <small>3 items </small><br>
+                    "address":<small>string </small>
+                    <span class="red">{{ item?.address | json }}</span>
+                  </li>
+                  <li>"verified":<small>int </small>{{ item.verified }}</li>
+                  <li>"share":<small>int </small>{{ item.share }}</li>
+                }
+                </ul>
+              </ul>
+            </ul>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

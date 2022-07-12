@@ -1,0 +1,41 @@
+  <mat-toolbar>
+    <div class="nav-bar">
+      <span class="trusty">TrustyX</span>
+      <div class="second">
+        
+          <form class="nosubmit" autocomplete="off">
+            <input class="nosubmit" type="search" name="search" [(ngModel)]="searchvalue"(input)="onsearchtextchanged()" placeholder="Search token address">
+          </form>      
+           
+      </div>
+      <div class="last">
+        <span class="create">Create </span>
+        <span class="connect">Connect to Phantom</span>
+        <span class="material-icons " [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          person
+        </span>
+        <mat-menu #menu="matMenu" class="menuItem">
+          <button mat-menu-item>
+            <span>My product</span>
+          </button>
+          <button mat-menu-item>
+            <span>Edit profile</span>
+          </button>
+          <button mat-menu-item>
+            <span>Disconnect wallet</span>
+          </button>
+          <button mat-menu-item>
+            <span>Logout</span>
+          </button>
+          <button mat-menu-item class="nightmode">
+            <span>Night mode</span>
+            <mat-slide-toggle class="toggle-button" color="#2097EE" mat-checked="#2097EE"></mat-slide-toggle>
+          </button>
+         
+        </mat-menu>
+        
+      </div>
+    </div>
+  </mat-toolbar>
+
+  
