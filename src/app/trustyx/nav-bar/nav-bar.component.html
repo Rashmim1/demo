@@ -1,41 +1,65 @@
-  <mat-toolbar>
-    <div class="nav-bar">
-      <span class="trusty">TrustyX</span>
-      <div class="second">
-        
-          <form class="nosubmit" autocomplete="off">
-            <input class="nosubmit" type="search" name="search" [(ngModel)]="searchvalue"(input)="onsearchtextchanged()" placeholder="Search token address">
-          </form>      
-           
-      </div>
-      <div class="last">
-        <span class="create">Create </span>
-        <span class="connect">Connect to Phantom</span>
-        <span class="material-icons " [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-          person
-        </span>
-        <mat-menu #menu="matMenu" class="menuItem">
-          <button mat-menu-item>
-            <span>My product</span>
-          </button>
-          <button mat-menu-item>
-            <span>Edit profile</span>
-          </button>
-          <button mat-menu-item>
-            <span>Disconnect wallet</span>
-          </button>
-          <button mat-menu-item>
-            <span>Logout</span>
-          </button>
-          <button mat-menu-item class="nightmode">
-            <span>Night mode</span>
-            <mat-slide-toggle class="toggle-button" color="#2097EE" mat-checked="#2097EE"></mat-slide-toggle>
-          </button>
-         
-        </mat-menu>
-        
-      </div>
-    </div>
-  </mat-toolbar>
+<nav class="navbar navbar-expand-sm navbar-light">
+  <a class="navbar-brand w-25 trusty"> TrustyX</a>
+  <div class="mx-auto w-50 order-0">
+  <form class="form mx-auto" autocomplete="off">
+    <input
+      class="form-control mx-auto nosubmit"
+      type="search"
+      name="search"
+      [(ngModel)]="searchvalue"
+      (input)="onsearchtextchanged()"
+      placeholder="Search token address"
+    />
+  </form>
+  </div>
 
+  <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarmenu">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarmenu">
+    <ul class="navbar-nav ml-auto">
+      
+      <li  class="nav-item ">
+        <a  class="nav-link nav-end mx-2"> create</a>
+      </li>
+      
+      <li  class="nav-item">
+        <a  class="nav-link nav-end mx-2"> contact to Phantom</a>
+      </li>
+      <li class="nav-item">
+        <span
+        class="material-icons icon nav-item mx-2 align-self-center"
+        [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu"
+      >
+        person
+      </span>
+    </li>
+    </ul>
+
+  <mat-menu #menu="matMenu" class="menuItem">
+    <button mat-menu-item>
+      <span>My product</span>
+    </button>
+    <button mat-menu-item>
+      <span>Edit profile</span>
+    </button>
+    <button mat-menu-item>
+      <span>Disconnect wallet</span>
+    </button>
+    <button mat-menu-item>
+      <span>Logout</span>
+    </button>
+    <button mat-menu-item class="nightmode">
+      <span>Night mode</span>
+      <mat-slide-toggle
+        class="toggle-button"
+        color="#2097EE"
+        mat-checked="#2097EE"
+      ></mat-slide-toggle>
+    </button>
+  </mat-menu>
+  </div>
   
+</nav>
